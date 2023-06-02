@@ -1,0 +1,48 @@
+body {
+    background: url("world.jpg");
+    text-align: center;
+}
+.heading {
+    font-size: 1.5rem;
+    color: #374259;
+}
+.container {
+    display: flex;
+    align-items: center;
+    width: 300px;
+    height: 300px;
+    margin: auto;
+}
+form {
+    padding: 10px;
+    display: flex;
+    align-items: center;
+}
+input {
+    padding: 12px;
+    border: none;
+    font-size: 1.07rem;
+    background-color: rgba(252, 234, 202, 0.932);
+    outline:none;
+    border: none;
+    color: #374259;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    text-align: center;
+}
+button {
+    padding: 12px;
+    letter-spacing: 1.2px;
+    font-size: 0.92rem;
+    border: none;
+    outline:none;
+    background-color: #c38054ef;
+    color: white;
+    font-weight: bold;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+button:hover {
+    background-color: #dda658ef;
+    cursor: pointer;
+}
