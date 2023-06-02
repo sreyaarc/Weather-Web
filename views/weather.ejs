@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styleEjs.css">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="Icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="Icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="Icons/favicon-16x16.png">
+    <link rel="manifest" href="Icons/site.webmanifest">
+    
+    <title>WeatherCheck</title>
+</head>
+<body>
+    <div class="container">
+        <h2><%= location %>, <%= country %></h2>
+        <img src="<%= imgSrc %>" alt="weatherImage"/>
+        <p class="temp"><%= temperature %>&#8451;</p>
+        <p class="desc"><%= mainDesc %> - <%= subDesc %></p>
+        <div class="subCont">
+            <p class="subDetails"><img class="subImage" src="/Icons/humidity.png"> Humidity
+            <br>
+            <%= humidityCond %>
+            </p>
+            <p class="subDetails"><img class="subImage" src="/Icons/wind.png"> Wind
+            <br>
+            <%= windCond %>
+            </p>
+        </div>
+    </div>
+</body>
+</html>
