@@ -13,8 +13,8 @@ import express from "express";
 const app = express();
 
 app.use(express.urlencoded({extended:true}));
-app.use(express.static(__dirname+"/"));
-
+app.use(express.static(path.join(__dirname, "public")));
+app.set("view engine", "ejs");
 
 app.get("/", (req, res) => {
     res.sendFile(__dirname+"/index.html")
@@ -23,22 +23,29 @@ app.get("/", (req, res) => {
 const apiKey = process.env.API_KEY;
 const baseUrl = "https://api.openweathermap.org/data/2.5/weather?";
 
+
 app.post("/", (req, res) => {
-    // const url = baseUrl+"q="+req.body.inputCity+"&appid="+apiKey+"&units=metric";
     const url = `${baseUrl}q=${req.body.inputCity}&appid=${apiKey}&units=metric`
+    
     https.get(url, (response) => {
         response.on("data", (d) => {
             const parsedData = JSON.parse(d);
             // res.send(parsedData);
             const imgURL = `https://openweathermap.org/img/wn/${parsedData.weather[0].icon}@2x.png`
-            res.write(`<h1>${parsedData.name}, ${parsedData.sys.country}</h1>` );
-            res.write(`<div><img src=${imgURL}></div>`);
-            res.write(`<div>Today's weather: ${parsedData.weather[0].main} - ${parsedData.weather[0].description}</div>`);
-            res.write(`<div>Temperature: ${parsedData.main.temp}&#8451;</div>`);
-            
-            res.send();
+
+            res.render("weather", {
+                location: parsedData.name,
+                country: parsedData.sys.country,
+                imgSrc: imgURL,
+                temperature: parsedData.main.temp,
+                mainDesc: parsedData.weather[0].main,
+                subDesc: parsedData.weather[0].description,
+                humidityCond: parsedData.main.humidity,
+                windCond: parsedData.wind.speed 
+            })
         })
     })
+
 })
 
 const port = process.env.PORT || 3000;
